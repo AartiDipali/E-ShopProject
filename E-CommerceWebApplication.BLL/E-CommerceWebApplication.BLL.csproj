@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>E_CommerceWebApplication.BLL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E-CommerceWebApplication.BOL\E-CommerceWebApplication.BOL.csproj" />
+    <ProjectReference Include="..\E-CommerceWebApplication.DAL\E-CommerceWebApplication.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
