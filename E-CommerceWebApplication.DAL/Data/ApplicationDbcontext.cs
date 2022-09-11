@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_CommerceWebApplication.DAL.Data
 {
-    internal class ApplicationDbcontext:DbContext
+    public class ApplicationDbcontext:DbContext
     {
         
     }
