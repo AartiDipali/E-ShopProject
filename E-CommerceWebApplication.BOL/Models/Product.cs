@@ -8,7 +8,9 @@ namespace E_CommerceWebApplication.BOL.Models
 {
     public class Product
     {
+
         public int productId { get; set; }
         public string productName { get; set; } 
+
     }
 }
