@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_CommerceWebApplication.BOL.Models
 {
-    public class Product
+    internal class Orders
     {
-        public int id { get; set; } = default;
-        public string name { get; set; } = default;
     }
 }
