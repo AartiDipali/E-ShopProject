@@ -1,8 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using E_CommerceWebApplication.DAL.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//
+builder.Services.AddDbContext<ApplicationDbcontext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("E-commerceDb"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

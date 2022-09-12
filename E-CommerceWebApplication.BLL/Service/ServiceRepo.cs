@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_CommerceWebApplication.BOL.Models
+namespace E_CommerceWebApplication.BLL.Service
 {
-    internal class Orders
+    internal class ServiceRepo
     {
     }
 }
