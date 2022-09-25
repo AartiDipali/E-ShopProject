@@ -8,8 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\E-CommerceWebApplication.BLL\E-CommerceWebApplication.BLL.csproj" />
     <ProjectReference Include="..\E-CommerceWebApplication.BOL\E-CommerceWebApplication.BOL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Customer\" />
+    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Product\" />
   </ItemGroup>
 
 </Project>
