@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using E_CommerceWebApplication.BOL.Models;
+using E_CommerceWebApplication.BOL.Models.Admin;
 
 namespace E_CommerceWebApplication.DAL.Data
 {

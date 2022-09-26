@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Customer\" />
-    <Folder Include="Areas\Admin\" />
-    <Folder Include="Areas\Product\" />
+    <Folder Include="Areas\Admin\Views\Category\" />
   </ItemGroup>
 
 </Project>
