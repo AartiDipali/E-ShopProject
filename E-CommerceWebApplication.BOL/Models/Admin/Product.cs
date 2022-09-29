@@ -12,5 +12,9 @@ namespace E_CommerceWebApplication.BOL.Models.Admin
         public int productId { get; set; }
         public string productName { get; set; }
 
+        public string Category { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
     }
 }
