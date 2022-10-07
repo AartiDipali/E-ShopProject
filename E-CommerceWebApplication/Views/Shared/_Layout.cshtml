@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    var data = HttpContextAccessor.HttpContext.Session.GetString(key: "Rolename");
+
+}
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -131,19 +142,18 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            @if(data=="Admin")
+                            {
+                                 <a asp-action="Dashboard" asp-controller="Dashboard" asp-area="Admin" class="nav-item nav-link">Dashboard</a>
+                            @*<a asp-area="Admin" asp-controller="RoleManagement" asp-action="Create" class="nav-item nav-link">CreateRole</a>*@
+
+                            }
+                          
+                          
+                          
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
+                            <a asp-area="Accounts" asp-action="Login" asp-controller="Account" class="nav-item nav-link">Login</a>
                             <a asp-area="Accounts" asp-action="Register" asp-controller="Account" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
@@ -246,6 +256,8 @@
 
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
+ @await Component.InvokeAsync("Notyf")
+  
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

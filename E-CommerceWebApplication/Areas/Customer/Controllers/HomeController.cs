@@ -1,5 +1,6 @@
 ﻿using E_CommerceWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System.Diagnostics;
 
 namespace E_CommerceWebApplication.Areas.Customer.Controllers
@@ -7,10 +8,11 @@ namespace E_CommerceWebApplication.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+   
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
         }
 
         public IActionResult Index()
@@ -28,5 +30,7 @@ namespace E_CommerceWebApplication.Areas.Customer.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }
