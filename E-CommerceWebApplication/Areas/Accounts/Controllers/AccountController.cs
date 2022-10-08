@@ -41,7 +41,7 @@ namespace E_CommerceWebApplication.Areas.Accounts
                 await _userManager.AddToRoleAsync(userdata, "Customer");
                 // Persistend creates either session or permanent cookie
                 //await signInManager.SignInAsync(user, isPersistent: false);
-                _notyfService.Custom("You have successfully saved the data.");
+                _notyfService.Success("You have successfully saved the data");
                 return View();
                 
             }
