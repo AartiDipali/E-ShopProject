@@ -35,8 +35,8 @@ namespace E_CommerceWebApplication.DAL.Data
                 //Here you could create the super admin who will maintain the web app
                 var poweruser = new ApplicationUser
                 {
-                    UserName = "Admin",
-                    Email = "admin@email.com",
+                    UserName = "admin@gmail.com",
+                    Email = "admin@gmail.com",
                 };
                 string adminPassword = "Admin@123#17";
 
