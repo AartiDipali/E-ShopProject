@@ -9,5 +9,6 @@ namespace E_CommerceWebApplication.DAL.Data
 {
     public class ApplicationUser:IdentityUser
     {
+      
     }
 }

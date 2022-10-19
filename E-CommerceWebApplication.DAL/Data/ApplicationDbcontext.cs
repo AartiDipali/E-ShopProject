@@ -18,7 +18,7 @@ namespace E_CommerceWebApplication.DAL.Data
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        
     }
 
 }
