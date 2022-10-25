@@ -31,7 +31,7 @@ Table of contents
 /* Typography */
 body, ul, li, p, a, label, input, div {
   font-family:Poppins;
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: 300 !important;
 }
 .h1 {
@@ -162,6 +162,7 @@ body, ul, li, p, a, label, input, div {
 .product-wap .h3, .product-wap li, .product-wap i, .product-wap p {
   font-size: 12px !important;
 }
+
 .product-wap .product-color-dot {
   width: 6px;
   height: 6px;
@@ -185,6 +186,21 @@ body, ul, li, p, a, label, input, div {
     width: 12px;
     height: 12px;
   }
+
+    .navbar .nav-item .dropdown-menu {
+        display: none;
+    }
+
+    .navbar .nav-item:hover .nav-link {
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/

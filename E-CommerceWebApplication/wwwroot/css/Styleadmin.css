@@ -4,6 +4,9 @@
     --second-text-color: #bbbec5;
     --second-bg-color: #c1efde;
 }
+body {
+    font-size: 14px !important;
+}
 
 .logoProducts {
     padding-right: 7px;
