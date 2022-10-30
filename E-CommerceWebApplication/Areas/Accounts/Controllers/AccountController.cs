@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using E_CommerceWebApplication.BLL.Infrastrastructure;
 using E_CommerceWebApplication.BOL.Models.ViewModels;
 using E_CommerceWebApplication.DAL.Data;
 using Microsoft.AspNetCore.Identity;
@@ -6,15 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_CommerceWebApplication.Areas.Accounts
 {
-    
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly INotyfService _notyfService;
-        public AccountController(UserManager<IdentityUser> userManager,INotyfService notyfService)
+        private readonly IAccount _Account;
+        public AccountController(UserManager<IdentityUser> userManager,INotyfService notyfService,IAccount account)
         {
             _userManager = userManager;
             _notyfService = notyfService;
+            _Account = account;
         }
 
         public IActionResult Index()
@@ -55,41 +57,34 @@ namespace E_CommerceWebApplication.Areas.Accounts
 
             return View();
         }
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel userModel)
+        public async Task<IActionResult> LoginAsync(LoginViewModel userModel)
         {
-            if (!ModelState.IsValid)
+           if(ModelState.IsValid)
             {
-                return View("Index");
-            }
-            var user = await _userManager.FindByEmailAsync(userModel.Email);
-
-            if (user != null &&
-                await _userManager.CheckPasswordAsync(user, userModel.Password))
-            {
-
-                var rolename = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
-
-                var dataresult = rolename.FirstOrDefault();
-                if (dataresult!=null)
+                var result = await _Account.LoginAsync(userModel);
+                if (result==true)
                 {
-                    HttpContext.Session.SetString(key:"Rolename", value:dataresult);
-                }
+                    _notyfService.Success("Login Sucessfull");
+                    return RedirectToAction("Index", "Home", new { area = "Customer" });
 
-                return RedirectToAction("Index", "Home", new {area = "Customer" });
-                //return View();
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
+           else
             {
                 ModelState.AddModelError("", "Invalid UserName or Password");
-                return View();
-
             }
-           
+
+            return View();
         }
 
     }

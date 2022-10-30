@@ -34,6 +34,7 @@ body, ul, li, p, a, label, input, div {
   font-size: 16px !important;
   font-weight: 300 !important;
 }
+
 .h1 {
   font-family: 'Roboto', sans-serif;
   font-size: 48px !important;
@@ -529,7 +530,7 @@ figure {
     color: #fff;
     border-bottom: none;
     width: auto;
-    padding: 15px 39px;
+    padding: 10px 25px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -746,8 +747,8 @@ label.valid {
 }
 
 .signin-content {
-    padding-top: 67px;
-    padding-bottom: 87px;
+    padding-top: 40px;
+    padding-bottom: 50px;
 }
 
 .social-login {
@@ -782,6 +783,8 @@ label.valid {
             color: #fff;
             font-size: 14px;
             border-radius: 5px;
+            padding-left:10px;
+            padding-top:10px;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             -o-border-radius: 5px;

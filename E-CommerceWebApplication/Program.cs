@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using NToastNotify;
+using E_CommerceWebApplication.BLL.Infrastrastructure;
+using E_CommerceWebApplication.BLL.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("E-commerceDb"));
 });
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
+builder.Services.AddTransient<IAccount, Account>();
 builder.Services.Configure<IdentityOptions>(opt =>
 {
     // Password settings 

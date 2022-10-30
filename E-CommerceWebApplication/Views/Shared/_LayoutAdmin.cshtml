@@ -84,6 +84,10 @@
                 <a href="#" class="list-group-item list-group-item-action fw-bold">
                     <i class="fas fa-chart-line me-2"></i>Orders
                 </a>
+                <a asp-area="Admin" asp-action="Create" asp-controller="RoleManagement" class="list-group-item list-group-item-action fw-bold">
+                    <i class="fas fa-chart-line me-2"></i>Role Management
+                </a>
+
                 <a href="#" class="list-group-item list-group-item-action  text-danger fw-bold">
                     <i class="fas fa-power-off me-2"></i>Logout
                 </a>
@@ -119,7 +123,7 @@
                 </div>
             </nav>
             <div class="container-fluid px-4">
-                @RenderBody();
+                @RenderBody()
             </div>
         </div>
     </div>
