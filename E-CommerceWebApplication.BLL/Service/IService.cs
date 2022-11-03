@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_CommerceWebApplication.BLL.Service
 {
-    internal class IService
+    public class IService
     {
     }
 }

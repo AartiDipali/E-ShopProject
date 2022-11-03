@@ -60,7 +60,7 @@
                 </div>
                 <div>
                     
-                    <i class='fa fa-shopping-cart' style='color: white;width:80px;'></i>
+                    <i class='fa fa-shopping-cart' style='color: white;width:80px;'><span>Cart</span></i>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
                     <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
                     <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
@@ -87,12 +87,12 @@
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                       
-                        @*@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                        {*@
+                        @if(SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" asp-action="Dashboard" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
                             </li>
-                        @*}*@
+                        }
 
                    
                     </ul>

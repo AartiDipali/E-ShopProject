@@ -31,29 +31,9 @@ namespace E_CommerceWebApplication.Areas.Accounts
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationViewModel model)
         {
-            var userdata = new ApplicationUser
-            {
-                UserName = model.Name,
-                Email = model.Email,
-                PasswordHash = model.Password
-            };
-            var result = await _userManager.CreateAsync(userdata, model.Password);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(userdata, "Customer");
-                // Persistend creates either session or permanent cookie
-                //await signInManager.SignInAsync(user, isPersistent: false);
-                _notyfService.Success("You have successfully saved the data");
-                return View();
-                
-            }
-            foreach (var error in result.Errors)
-            {
-                // Adding this to Modelstate goes to validation-summary in register.cshtml
-                ModelState.AddModelError("", error.Description);
-            }
+          
 
-
+         //Call registration method here 
 
             return View();
         }
@@ -67,24 +47,16 @@ namespace E_CommerceWebApplication.Areas.Accounts
         {
            if(ModelState.IsValid)
             {
-                var result = await _Account.LoginAsync(userModel);
+                var result = await _Account.Login(userModel);
                 if (result==true)
                 {
-                    _notyfService.Success("Login Sucessfull");
+                    //_notyfService.Success("Login Sucessfull");
                     return RedirectToAction("Index", "Home", new { area = "Customer" });
-
+                    _notyfService.Success("Login Sucessfull");
                 }
-                else
-                {
-                    return View();
-                }
-            }
-           else
-            {
                 ModelState.AddModelError("", "Invalid UserName or Password");
             }
-
-            return View();
+         return View(userModel);
         }
 
     }

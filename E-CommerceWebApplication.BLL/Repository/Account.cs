@@ -1,5 +1,6 @@
 ﻿using E_CommerceWebApplication.BLL.Infrastrastructure;
 using E_CommerceWebApplication.BOL.Models.ViewModels;
+using E_CommerceWebApplication.DAL.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -23,7 +24,7 @@ namespace E_CommerceWebApplication.BLL.Repository
         }
        
 
-        public async Task<bool> LoginAsync(LoginViewModel loginViewModel)
+        public async Task<bool> Login(LoginViewModel loginViewModel)
         {
 
             
@@ -45,5 +46,29 @@ namespace E_CommerceWebApplication.BLL.Repository
             }
             return false;
         }
+
+        public async void Register(RegistrationViewModel registrationViewModel)
+        {
+            var userdata = new ApplicationUser
+            {
+                UserName = registrationViewModel.Name,
+                Email = registrationViewModel.Email,
+                PasswordHash = registrationViewModel.Password
+            };
+            var result = await _userManager.CreateAsync(userdata, registrationViewModel.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(userdata, "Customer");
+                // Persistend creates either session or permanent cookie
+                //await signInManager.SignInAsync(user, isPersistent: false);
+                //_notyfService.Success("You have successfully saved the data");
+              
+
+            }
+           // return 1;
+            
+            throw new NotImplementedException();
+        }
+        
     }
 }
