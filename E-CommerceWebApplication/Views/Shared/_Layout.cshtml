@@ -3,6 +3,7 @@
 @using Newtonsoft.Json
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Identity;
+@using E_CommerceWebApplication.DAL.Data;
 @inject SignInManager<IdentityUser> SignInManager
 @inject IHttpContextAccessor HttpContextAccessor
 
@@ -86,14 +87,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
-                      
-                        @if(SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                      @if(User.Identity.IsAuthenticated)
+                      {
+                        @if(User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-action="Dashboard" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
                             </li>
                         }
-
+                      }
                    
                     </ul>
                 </div>
@@ -222,6 +224,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/templatemo.js"></script>
     <script src="~/js/custom.js"></script>
+    @await Component.InvokeAsync("Notyf")
     <!-- End Script -->
    
 </body>

@@ -7,7 +7,7 @@
         <div class="signin-content">
             <div class="signin-image">
                 <figure><img src="~/img/signin-image.jpg" alt="sing up image"></figure>
-                <a href="#" class="signup-image-link">Create an account<i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                <a asp-action="Register" asp-controller="Account" class="signup-image-link">Create an account<i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </div>
 
             <div class="signin-form">
@@ -24,6 +24,9 @@
                     <div class="form-group">
                         <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                         <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="ForgotPassword" asp-controller="Account">Forgot Password?</a>
                     </div>
                     <div class="form-group form-button">
                         <input type="submit" name="signin" id="signin" class="form-submit btn-success" value="Log in" />

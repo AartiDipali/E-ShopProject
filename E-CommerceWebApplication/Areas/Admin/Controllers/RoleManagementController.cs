@@ -1,6 +1,7 @@
 ﻿using E_CommerceWebApplication.BOL.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Management.Smo;
 using System.Data;
 
 namespace E_CommerceWebApplication.Areas.Admin.Controllers
@@ -12,6 +13,13 @@ namespace E_CommerceWebApplication.Areas.Admin.Controllers
         public RoleManagementController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
+        }
+
+        [HttpGet]
+        public IActionResult GetRoles()
+        {
+            var roles = roleManager.Roles.ToList();
+            return View(roles);
         }
 
         public IActionResult Create()
@@ -29,6 +37,11 @@ namespace E_CommerceWebApplication.Areas.Admin.Controllers
             }
 
             return View();
+        }
+
+        public async Task<IActionResult> CreateRole()
+        {
+            return PartialView("CreateRoles");
         }
     }
 }

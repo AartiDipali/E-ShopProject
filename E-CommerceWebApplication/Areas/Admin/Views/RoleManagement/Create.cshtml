@@ -1,18 +1,56 @@
-﻿@model RoleViewModel
-<div class="container">
-<form asp-controller="RoleManagement" asp-action="Create" method="post">
-   
-    <div class="row">
-        <div class="col-sm-6 mb-3">
-            <label>Role Name</label>
-            <input type="text" name="first_name" id="first_name" class="input-field">
-        </div>
-        </div>
+﻿
+<head>
+<style>
+        .custom-centered {
+            margin: 0 auto;
+            width: 500px;
+            background-color:white;
+            margin-top:70px;
+            margin-bottom:150px;
+            padding:30px;
+            padding-left:60px;
+            padding-right:60px;
+        }
+       .btn-success {
+          background-color: #59ab6e !important;
+          border-color: #56ae6c !important;
+        }
+        h4
+        {
+            text-align:center;
+             padding-bottom:40px;
+        }
+</style>
+</head>
 
+@model RoleViewModel
+<div class="container custom-centered">
+  
     <div class="row">
-        <div class="form-group form-button">
-            <input type="submit" name="signin" id="signin" class="form-submit btn-success" value="Create" />
+        
+        <div class="h-100 d-flex justify-content-center align-items-center col-md-12">
+
+            <form asp-controller="RoleManagement" asp-action="CreateRole" method="post">
+           
+        <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Role Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="RoleName" class="form-control" id="email"
+                                   placeholder="Enter Email..">
+                        </div>
+                    </div>
+       
+            
+        </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success" />
+                
+            </div>
+            
+        </form>
         </div>
     </div>
-</form>
-</div>
+ </div>
+
+

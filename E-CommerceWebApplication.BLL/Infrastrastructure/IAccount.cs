@@ -10,9 +10,9 @@ namespace E_CommerceWebApplication.BLL.Infrastrastructure
 {
     public interface IAccount
     {
-        Task<bool> Login(LoginViewModel loginViewModel);
+        Task<SignInResult> Login(LoginViewModel loginViewModel);
         //here add registration method
-        void Register(RegistrationViewModel registrationViewModel);
+        Task<IdentityResult> Register(RegistrationViewModel registrationViewModel);
 
     }
 }

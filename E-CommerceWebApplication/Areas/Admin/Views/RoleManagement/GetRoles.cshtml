@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "Roles";
+}
+
+<head>
+    <style>
+        .container
+        {
+            Width:500px;
+            margin-top:60px;
+            margin-left:40px;
+        }
+         .btn-success {
+          background-color: #59ab6e !important;
+          border-color: #56ae6c !important;
+        }
+        th{
+            text-align:center;
+
+        }
+        td{
+            text-align:center;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<div class="container shadow p-5">
+    <div class="col mb-3">
+        <a class="btn btn-success" asp-action="CreateRole" asp-controller="RoleManagement">Add Role</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              
+                <th scope="col">Role Name</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="20%">
+                        @item.Name
+                    </td>
+                    
+                    <td width="20%">
+                        <div role="group" class="w-60 btn-group">
+                            <a class="btn btn-sm btn-success"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a class="btn btn-sm btn-danger">
+
+
+                                <i class="fa-light fa-trash-can"></i>Delete
+                            </a>&nbsp;
+                            <a class="btn btn-sm btn-success"><i class="bi bi-trash-fill"></i>Details</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
