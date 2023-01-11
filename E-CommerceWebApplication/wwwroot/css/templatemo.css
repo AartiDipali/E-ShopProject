@@ -499,7 +499,7 @@ body {
 }
 
 .signup-content {
-    padding: 75px 0;
+    padding: 30px 0;
 }
 
 .signup-form, .signup-image, .signin-form, .signin-image {
@@ -507,16 +507,15 @@ body {
     overflow: hidden;
 }
 
-.signup-image {
-    margin: 0 55px;
-}
+
 
 .form-title {
     margin-bottom: 33px;
 }
 
 .signup-image {
-    margin-top: 45px;
+    margin-top:150px;
+    margin-left:20px;
 }
 
 figure {
@@ -564,6 +563,7 @@ figure {
     margin-left: 75px;
     margin-right: 75px;
     padding-left: 34px;
+    width:1000px;
 }
 
 .register-form {

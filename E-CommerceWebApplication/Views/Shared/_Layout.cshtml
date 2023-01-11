@@ -2,9 +2,9 @@
 @using Microsoft.AspNetCore.Http
 @using Newtonsoft.Json
 @using System.Security.Claims
-@using Microsoft.AspNetCore.Identity;
+@*@using Microsoft.AspNetCore.Identity;*@
 @using E_CommerceWebApplication.DAL.Data;
-@inject SignInManager<IdentityUser> SignInManager
+@*@inject SignInManager<ApplicationUser> SignInManager*@
 @inject IHttpContextAccessor HttpContextAccessor
 
 
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/fonts/material-icon/css/material-design-iconic-font.min.css">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
     </nav>
     <!-- Close Top Nav -->
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
+@*    <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
             <img src="~/img/onlinelogomaker-101822-0043-8921.png"  height="60px" width="100px" alt="sing up image">
@@ -109,16 +109,77 @@
                         </div>
                     </div>
 
-                    <a class="nav-link" asp-area="Accounts" asp-action="Login" asp-controller="Account">Login</a>
-                    
-                    <a class="nav-link" asp-area="Accounts" asp-action="Register" asp-controller="Account">Register</a>
-                 
-                  
+              
+                  @if (SignInManager.IsSignedIn(User))
+                   {
+                        <a class="nav-link" asp-area="Accounts" asp-action="Logout" asp-controller="Account">LogOut</a>
+                   }
+                  else
+                  {
+                        <a class="nav-link" asp-area="Accounts" asp-action="Login" asp-controller="Account">Login</a>
+
+                        <a class="nav-link" asp-area="Accounts" asp-action="Register" asp-controller="Account">Register</a>
+                  }
+                  <partial name="_LoginInfo"/>
+                </div>
+            </div>
+
+        </div>
+    </nav>*@
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <img src="~/img/onlinelogomaker-101822-0043-8921.png" height="60px" width="100px" alt="sing up image">
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto" id="Menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        
+                            <a class="nav-link" asp-action="About" asp-controller="Home" asp-area="Customer">About</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="shop.html">ContactUs</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                  @* 
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a>*@
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </a>
+                   @* <a class="nav-icon position-relative text-decoration-none" href="#demo" data-bs-toggle="collapse">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>*@
+
+                   @* <div id="demo" class="collapse">
+                        <div class="card card-body" style="background-color:white;margin-left:1400px;margin-right:100px">
+                            <partial name="_LoginInfo" />
+                        </div>
+                    </div>*@
+
+                    <partial name="_LoginInfo" />
                 </div>
             </div>
 
         </div>
     </nav>
+    
     <!-- Close Header -->
    <div>
        @RenderBody()
@@ -218,12 +279,14 @@
     </footer>
     <!-- End Footer -->
     <!-- Start Script -->
+   
     <script src="~/js/jquery-1.11.0.min.js"></script>
     <script src="~/js/jquery-migrate-1.2.1.min.js"></script>
    @* <script src="~/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/templatemo.js"></script>
     <script src="~/js/custom.js"></script>
+    @RenderSection("scripts", required: false)
     @await Component.InvokeAsync("Notyf")
     <!-- End Script -->
    

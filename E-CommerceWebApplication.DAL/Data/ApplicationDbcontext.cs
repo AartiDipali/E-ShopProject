@@ -11,14 +11,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace E_CommerceWebApplication.DAL.Data
 {
-    public class ApplicationDbcontext:IdentityDbContext<IdentityUser>
+    public class ApplicationDbcontext:IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options):base(options)
         {
 
         }
+        public DbSet<Category> Categories { get; set; }
 
-        
+
     }
 
 }

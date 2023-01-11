@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace E_CommerceWebApplication.DAL.Data
 {
     public static class Dbintializer
     {
-        public static async Task InitializeAsync(IServiceProvider serviceProvider, UserManager<IdentityUser> userManager)
+        public static async Task InitializeAsync(IServiceProvider serviceProvider, UserManager<ApplicationUser> userManager)
         {
             var roles = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             string[] rolenames = { "Admin" };
@@ -27,7 +28,7 @@ namespace E_CommerceWebApplication.DAL.Data
             //}
 
             // find the user with the admin email 
-            var _user = await userManager.FindByEmailAsync("admin@email.com");
+            var _user = await userManager.FindByEmailAsync("amoldipuecom1217@gmail.com");
 
             // check if the user exists
             if (_user == null)
@@ -35,8 +36,17 @@ namespace E_CommerceWebApplication.DAL.Data
                 //Here you could create the super admin who will maintain the web app
                 var poweruser = new ApplicationUser
                 {
-                    UserName = "aartichame2015@gmail.com",
-                    Email = "aartichame2015@gmail.com",
+                    UserName = "amoldipuecom1217@gmail.com",
+                    Email = "amoldipuecom1217@gmail.com",
+                    firstName="abc",
+lastName="xyz",
+address1="pqr",
+   address2="gfh",
+
+
+Zipcode ="ghdgusgus", 
+city="hgsgudg",     
+State="hgdusgus"
                 };
                 string adminPassword = "Admin@123#17";
 
@@ -51,9 +61,6 @@ namespace E_CommerceWebApplication.DAL.Data
 
         }
 
-        public static object InitializeAsync(IServiceProvider services, UserManager<ApplicationUser> userManager)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

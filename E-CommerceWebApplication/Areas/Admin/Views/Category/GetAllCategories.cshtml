@@ -1,0 +1,303 @@
+﻿@model Category
+
+@{
+    ViewBag.Title = "Roles";
+
+}
+@*@{
+    var imgSrc = ViewBag.Data;
+}*@
+
+
+    <head>
+    <style>
+        .container{
+           
+            margin-right: 510px;
+            
+        }
+        .btn-success {
+            background-color: #59ab6e !important;
+            border-color: #56ae6c !important;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        body {
+            background-color: #FFEBEE
+        }
+
+        #CardData{
+            width: 1400px;
+            background-color:white;
+            box-shadow: 6px 6px 4px lightgreen;
+        }
+        .card {
+            width: 400px;
+            background-color: #fff;
+            border: none;
+             box-shadow: 6px 6px 4px lightgreen;
+           
+        }
+
+      
+
+        .form-control {
+            margin-top: 10px;
+            height: 40px;
+            border: 2px solid #eee;
+            border-radius: 10px
+        }
+
+           
+
+        .agree-text {
+            font-size: 12px
+        }
+
+        .terms {
+            font-size: 12px;
+            text-decoration: none;
+            
+        }
+
+        .confirm-button {
+            margin-top:40px;
+            height: 50px;
+            border-radius: 10px;
+            width:150px;
+        }
+
+        .custom-control-input:checked {
+            background-color: red;
+            border-color: red;
+        }
+
+        input[type="checkbox"] :checked {
+                        background-color: green;
+
+        }
+        #Paging  a{
+            color:green;
+            border-color:green;
+        }
+
+        #Paging > li.active > a {
+            background: green;
+            color:black;
+            
+        }
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+           /* width: 1.375rem;*/
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+
+
+    </style>
+</head>
+
+<div class="container">
+<div class="row">
+        <div class="col-lg-5 col-xlg-3 col-md-12">
+            <div class="container mt-5 mb-5 d-flex justify-content-center">
+                <div class="card px-1 py-4">
+                    <div class="card-body">
+                        
+                   <h3>Category</h3>
+                        <form asp-controller="Category" asp-action="GetAllCategories" method="post" autocomplete="off" enctype="multipart/form-data">
+
+                    <div class="form-group ">
+                        <label class="control-label " for="name">
+                           Categoty Name
+                        </label>
+                        <input class="form-control" id="name" asp-for="Name" type="text" />
+                    </div>
+                      <div class="form-group mt-9">
+                                <label asp-for="ImageFile" class="control-label"></label>
+                                <input asp-for="ImageFile" class="form-control" accept="image/*" />
+                      </div>
+                    <div class="form-group mt-4">
+                        
+                        <div >
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                        
+                                            <input type="checkbox" asp-for="IsActive"> IsActive
+                                        
+                               @* <label for="checkbox_0" class="custom-control-label">IsActive</label>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="Col-md-4 ">
+                            <button class="btn btn-success btn-block confirm-button">Add</button> &nbsp; &nbsp;&nbsp; &nbsp;<button class="btn btn-success btn-block confirm-button">Clear</button>
+                     </div>
+                     
+
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-lg-7 col-xlg-9 col-md-12">
+            
+            <div class="container mt-5 mb-5 d-flex justify-content-center">
+                <div class="card px-1 py-4" id="CardData">
+                    <div class="card-body">
+                        <div class="col mb-3">
+                            <h3>
+                            Category List
+                            </h3>
+                        </div>
+                
+                       @*<div class="form-group has-search">
+                            
+                                <span class="fa fa-search form-control-feedback"></span>
+                                
+                            <input type="text" class="form-control" style="width: 200px;" placeholder="Search">
+                        </div>*@
+                     
+                        
+                        <div class="table-responsive">
+                            <table class="table text-nowrap"
+   align="center" id="tblData">
+                            <thead>
+                                <tr>
+                                    <th>Category Name</th>
+                                   
+                                    <th>Active</th>
+                                    @*<th>CreatedOn</th>*@
+                                        <th>Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblData">
+
+                              @*  @foreach (var item in ViewBag.data)
+                                {
+                                    <tr>
+                                        <td width="30%">
+                                            @item.Name
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td width="30%">
+                                            <div role="group" class="w-60 btn-group">
+                                                <i class="fa fa-pencil-square" aria-hidden="true" style="color:green;font-size:30px"></i>&nbsp;
+                                                <i class="fa fa-trash" aria-hidden="true" style="color:green;font-size:30px"></i>
+                                                
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                }*@
+                            </tbody>
+                        </table>
+                        </div>
+                       <br/>
+                         <ul class="pagination justify-content-end" id="Paging">
+    <li class="page-item"><a class="page-link" href="javascript:void(0);"><<</a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);">>></a></li>
+  </ul>
+                    </div>
+                </div>
+        
+                </div>
+    </div>
+</div>
+</div>
+
+@section scriptsjs
+ {
+     <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            BindpatientData();
+        });
+             function  BindpatientData () 
+             {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Category/AjaxMethod",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#tblData").DataTable(
+                        {
+                            bLengthChange: false,
+                            //lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                            bFilter: true,
+                            bSort: true,
+                            bPaginate: false,
+                            data: response,
+                            
+                            columns: [
+                              
+                                { 'data': 'Name' },
+                               
+                                { 'data': 'IsActive' },
+                                //{ 'data': 'CreatedOn' },
+                                {
+                                    data: null,
+                                    render: function (data, type, row) {
+
+
+                                        return '<img src="data:image/gif;base64,{0},' + data + '" " style="height:100px;width:100px;"/>';
+
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    render: function (data, type, row) {
+                                        //return "<input type='button' id='btnDelete' value='Delete' class='btn btn-danger' data-id='" + data.id + "'>";
+                                        return '<a href="#" onclick="Edit(' + data.Id + ')"><i class="fa fa-pencil-square" aria-hidden="true" style="color:green;font-size:25px"></i></a>&nbsp<a href="#" onclick="Delete(' + data.Id + ')"> <i class="fa fa-trash" aria-hidden="true" style="color:green;font-size:25px"></i></a>'
+                                        
+                                    }
+                                }
+                                  
+                            ]
+                        });
+                    console.log(response);
+                },
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+        function Edit(id)
+        {
+            alert(id);
+        }
+       
+     </script>
+ }

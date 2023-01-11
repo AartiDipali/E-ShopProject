@@ -1,48 +1,130 @@
 ﻿
+
+@{
+    var data = ViewBag.Result;
+    
+}
+
 @model RegistrationViewModel
+
 <form asp-controller="Account" asp-action="Register" method="post" class="mx-1 mx-md-4">
     <!-- Sign up form -->
     <section class="signup">
         <div class="container" id="logincontainer">
+
             <div class="signup-content">
-                <div class="signup-form">
-                    <h2 class="form-title">Sign up</h2>
-                    <form method="POST" class="register-form" id="register-form" asp-action="Register" asp-controller="Account">
-                        
-                        <div class="form-group">
-                            <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" asp-for="firstName" id="name" placeholder="Your Name" />
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><i class="zmdi zmdi-email"></i></label>
-                            <input type="email" name="email" id="email" placeholder="Your Email" />
-                        </div>
-                        <div class="form-group">
-                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="pass" id="pass" placeholder="Password" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                        </div>
-                        
-                        
-                        <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit btn-success" value="Register" />
-                        </div>
-                    </form>
-                </div>
                 <div class="signup-image">
                     <figure><img src="~/img/signup-image.jpg" alt="sing up image"></figure>
                     <a href="#" class="signup-image-link">I am already member</a>
+                    <a asp-action="Login" asp-controller="Account" class="signup-image-link">Login Here..</a>
                 </div>
+                <div class="signup-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form method="POST" class="register-form" id="register-form" asp-action="Register" asp-controller="Account">
+                        <div class="mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                 <input type="text" asp-for="firstName" id="name" placeholder="First Name" />
+                                 </div>
+                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" asp-for="lastName"  placeholder="Last Name" />
+                                </div>
+                            </div>
+                         </div>
+                         </div>
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" asp-for="Email" placeholder="Your Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fa fa-phone-square" aria-hidden="true"></i>
+                     </label>
+                            <input type="text" asp-for="Phone" placeholder="Phone Number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </label>
+                            <input type="text" asp-for="address1"   placeholder="Address1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="fa fa-map-marker" aria-hidden="true"></i></label>
+                            <input type="text" asp-for="address2" placeholder="Address2" />
+                        </div>
+                        <div class="mb-3">
+                        <div class="row">
+                           <div class="col-md-6">
+                                 <div class="form-group">
+                                        <label for="re-pass">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                        </label>
+                                 <input type="text"  asp-for="city"   placeholder="City"/>
+                                 </div>
+                           </div>
+                           <div class="col-md-6">
+                                <div class="form-group">
+                                        <label for="re-pass">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        </label>
+                                    <input type="text" asp-for="State" placeholder="State"/>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pass">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            </label>
+                            <input type="text" asp-for="Zipcode" placeholder="Zip/Postal code" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password"  asp-for="Password" id="pass" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" asp-for="confirmPassword" id="re_pass" placeholder="Repeat your password" />
+                        </div>
+                       @* <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                        </div>*@
+                        
+  
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit btn-success" value="Register"/>
+                        </div>
+                    </form>
+                </div>
+               
             </div>
+            
         </div>
     </section>
+   
 </form>
 
+@if (data==true)
+{
+    @section scripts{
+    <script>
+        $(function () {
+          
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucess',
+                text: 'You have sucessfully registered!Email Sent Sucessfully On Your Mail To Confirm Acccount',
+                
+                timer: 1000000,
+                timerProgressBar: true
+            })
+        })
+    </script>
+    }
+}

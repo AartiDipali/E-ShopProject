@@ -6,133 +6,132 @@
     <title>E-Shop</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="~/Saviourmachine-Chat-Shopping.ico">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Styleadmin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    
 </head>
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
-                <i class="fas fa-user-secret me-2"></i>Codersbite
+                <i class="fa fa-user-secret me-2"></i>EShop
             </div>
             <div class="list-group list-group-flush my-3">
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active">
-                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    <i class="fa fa-tachometer me-2"></i>Dashboard
                 </a>
                 <ul class="navbar-nav" id="menu">
-                    <li class="nav-item dropdown">
-                        <a href="#submenu3" data-bs-toggle="collapse" class="dropdown-item list-group-item  fw-bold"
+                    <li class="nav-item">
+                        <a href="#"  class="dropdown-item list-group-item  fw-bold"
                            aria-expanded="false" aria-controls="submenu3">
-                            <i class="fas fa-gift me-2 "></i>Products<i class="fa fa-caret-down"></i>
+                            <i class="fa fa-shopping-bag me-2 "></i>Products
                         </a>
-                        <ul class="collapse nav flex-column ms-1 dropdown-btn" id="submenu3" data-bs-parent="#menu">
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-plus logoProducts" aria-hidden="true"></i>Add Products
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-address-book logoProducts" aria-hidden="true"></i>Update
-                                    Products
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-minus logoProducts" aria-hidden="true"></i>Delete Products
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-list logoProducts" aria-hidden="true"></i>View Products
-                                </a>
-                            </li>
-                        </ul>
+                    
                     </li>
                     <li>
-                        <a href="#submenu4" data-bs-toggle="collapse" class="dropdown-item list-group-item  fw-bold"
-                           aria-expanded="false" aria-controls="submenu4">
-                            <i class="fas fa-gift me-2"></i>Category<i class="fa fa-caret-down"></i>
+                        <a href="#" class="list-group-item list-group-item-action fw-bold">
+                            <i class="fa fa-tags me-2"></i>Theme
                         </a>
-                        <ul class="collapse nav flex-column ms-1 dropdown-btn" id="submenu4" data-bs-parent="#menu">
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-plus logoProducts" aria-hidden="true"></i>Add Products
-                                </a>
+                               
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action fw-bold" href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fa fa-tags me-2"></i>Manage
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100 nav-item ">
+                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Brand</span></a>
                             </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-address-book logoProducts" aria-hidden="true"></i>Update
-                                    Products
-                                </a>
+                           
+                            <li class="nav-item">
+                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Size</span></a>
+
                             </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-minus logoProducts" aria-hidden="true"></i>Delete Products
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item list-group-item bg-transparent second-text fw-bold" href="#">
-                                    <i class="fa fa-list logoProducts" aria-hidden="true"></i>View Products
-                                </a>
+                            <li class="nav-item">
+                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Subcategory</span></a>
+
                             </li>
                         </ul>
                     </li>
                 </ul>
+               
                 <a href="#" class="list-group-item list-group-item-action fw-bold">
-                    <i class="fas fa-chart-line me-2"></i>Orders
+                    <i class="fa fa-list-alt me-2"></i>Product List
+                </a>
+                <a href="#" class="list-group-item list-group-item-action fw-bold">
+                    <i class="fa fa-first-order me-2"></i>Orders
                 </a>
                 <a asp-area="Admin" asp-action="GetRoles" asp-controller="RoleManagement" class="list-group-item list-group-item-action fw-bold">
-                    <i class="fas fa-chart-line me-2"></i>Role Management
+                    <i class="fa fa-user-circle-o me-2"></i>Role Management
                 </a>
-
+                <a asp-action="GetAllCategories" asp-controller="Category" asp-area="Admin" class="list-group-item list-group-item-action fw-bold">
+                    <i class="fa fa-tags me-2"></i>Category
+                </a>
                 <a href="#" class="list-group-item list-group-item-action  text-danger fw-bold">
-                    <i class="fas fa-power-off me-2"></i>Logout
+                    <i class="fa fa-power-off me-2"></i>Logout
                 </a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <div id="">
-            <nav class="navbar navbar-expand-lg navbar-light py-4 px-4">
+        @*<div id="page-content-wrapper">*@
+      
+        <div id="page-content-wrapper">
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-4">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <i class="fa fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">Dashboard</h2>
-                     @if(User.Identity.IsAuthenticated)
-        {
-            <span>@User.Identity.Name</span>
-        }
                 </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>John Doe
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+                    <ul class="navbar-nav d-flex ms-auto flex-row me-1">
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link text-black" href="#"><i class="fa fa-envelope mx-1"></i> Contact</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link text-black" href="#"><i class="fa fa-cog mx-1"></i> Settings</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link  text-black" href="#" id="navbarDropdown" role="button"
+                           > <i class="fa fa-user mx-1"></i>Welcome Admin </a>
+                       
+                    </li>
+                </ul>
                 </div>
+
+          
             </nav>
-            <div class="container-fluid px-4">
+          
+            <div class="container-fluid">
                 @RenderBody()
             </div>
         </div>
+       
     </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+   
+    
+    @RenderSection("scriptsjs", required: false)
+   
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
@@ -140,5 +139,6 @@
             el.classList.toggle("toggled");
         };
     </script>
+   
 </body>
 </html>
