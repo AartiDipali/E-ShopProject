@@ -31,10 +31,9 @@ namespace E_CommerceWebApplication.BLL.Repository
             throw new NotImplementedException();
         }
 
-        public void Delete(object id)
+        public virtual void Delete(object id)
         {
-            T existing = _dbSet.Find(id);
-            _dbSet.Remove(existing);
+            throw new NotImplementedException();
         }
 
         public virtual  IEnumerable<T> GetAll()

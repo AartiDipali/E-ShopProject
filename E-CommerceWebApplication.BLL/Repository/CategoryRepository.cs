@@ -17,8 +17,6 @@ namespace E_CommerceWebApplication.BLL.Repository
 		public CategoryRepository(ApplicationDbcontext context, ILogger logger) : base(context, logger)
 		{
 		}
-
-
 		public override IEnumerable<Category> GetAll()
 		{
 
@@ -54,7 +52,6 @@ namespace E_CommerceWebApplication.BLL.Repository
 
 		public override void Create(Category category)
 		{
-
 			try
 			{
                            //Getting FileName
@@ -80,21 +77,27 @@ namespace E_CommerceWebApplication.BLL.Repository
                     categoryData.dataFiles = target.ToArray();
                 }
 
-				_dbSet.Add(categoryData);
-
-
-                    
-                
+				_dbSet.Add(categoryData);     
                 
 			}
             catch (NullReferenceException ex)
             {
                 _logger.LogError(ex, "{Repo} All function error", typeof(CategoryRepository));
             }
-
-
-
+        }
+        public override void Delete(object id)
+        {
+			try
+			{
+				var result = _dbSet.Find(id);
+				_dbSet.Remove(result);
+				
+			}
+			catch (NullReferenceException ex)
+			{
+				_logger.LogError(ex, "{Repo} All function error", typeof(CategoryRepository));
+			}
         }
 
-	}
+    }
 }

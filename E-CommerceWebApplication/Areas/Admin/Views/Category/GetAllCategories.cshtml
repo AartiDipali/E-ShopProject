@@ -1,14 +1,16 @@
 ﻿@model Category
-
+@using AspNetCoreHero.ToastNotification.Abstractions;
+@inject INotyfService _notyfService;
 @{
-    ViewBag.Title = "Roles";
+    ViewBag.Title = "Category";
 
 }
-@*@{
-    var imgSrc = ViewBag.Data;
-}*@
 
-
+@if (TempData["Success"] != null)
+{
+  
+    _notyfService.Success("Your data save sucessfully");
+}
     <head>
     <style>
         .container{
@@ -33,30 +35,36 @@
             background-color: #FFEBEE
         }
 
+        #tblData_paginate
+        {
+            color:green;
+
+        }
+
+       /* #tblData_previous
+        {
+            background-color:green;
+            color:black;
+        }*/
+       
         #CardData{
             width: 1400px;
             background-color:white;
-            box-shadow: 6px 6px 4px lightgreen;
+            box-shadow: 3px 3px 3px lightgreen;
         }
         .card {
             width: 400px;
             background-color: #fff;
             border: none;
-             box-shadow: 6px 6px 4px lightgreen;
+             box-shadow: 3px 3px 3px lightgreen;
            
         }
-
-      
-
         .form-control {
             margin-top: 10px;
             height: 40px;
             border: 2px solid #eee;
             border-radius: 10px
         }
-
-           
-
         .agree-text {
             font-size: 12px
         }
@@ -110,6 +118,37 @@
             color: #aaa;
         }
 
+        #tblData
+        {
+            text-align:center;
+        }
+
+            #tblData th {
+            text-align:center;
+                color: gray;
+        }
+
+            #tblData tr{
+                color:gray;
+            }
+
+                
+        label
+        {
+            color:gray;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button
+        {
+            color: black !important;
+            border: 1px solid lightgreen !important;
+            background-color: white !important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+                color: white !important;
+                
+                background-color: green !important;
+        }
 
     </style>
 </head>
@@ -123,32 +162,40 @@
                         
                    <h3>Category</h3>
                         <form asp-controller="Category" asp-action="GetAllCategories" method="post" autocomplete="off" enctype="multipart/form-data">
+                            <div class="form-group">
 
+                                <input name="Id" class="form-control" id="txtid" type="hidden" />
+
+                            </div>
+                            
                     <div class="form-group ">
                         <label class="control-label " for="name">
                            Categoty Name
                         </label>
-                        <input class="form-control" id="name" asp-for="Name" type="text" />
+                        <input class="form-control" id="txtName" asp-for="Name" type="text" />
                     </div>
                       <div class="form-group mt-9">
                                 <label asp-for="ImageFile" class="control-label"></label>
-                                <input asp-for="ImageFile" class="form-control" accept="image/*" />
+                                <input asp-for="ImageFile" class="form-control" id="catimage" accept="image/*"  />
+                                <br/>
+                                <div id="txtimg"></div>
                       </div>
                     <div class="form-group mt-4">
                         
                         <div >
                             <div class="custom-control custom-checkbox custom-control-inline">
+
+                                        <input type="checkbox" asp-for="IsActive" id="txtcheckbox"> IsActive
+
                                         
-                                            <input type="checkbox" asp-for="IsActive"> IsActive
-                                        
-                               @* <label for="checkbox_0" class="custom-control-label">IsActive</label>*@
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="Col-md-4 ">
-                            <button class="btn btn-success btn-block confirm-button">Add</button> &nbsp; &nbsp;&nbsp; &nbsp;<button class="btn btn-success btn-block confirm-button">Clear</button>
-                     </div>
+                                    <button class="btn btn-success btn-block confirm-button" id="btnAdd">Add</button> &nbsp; &nbsp;&nbsp; &nbsp;<button class="btn btn-success btn-block confirm-button" onclick="clear()">Clear</button>
+                                    <button class="btn btn-success btn-block confirm-button" id="btnUpdate" onclick="update()">Update</button>
+                        </div>
                      
 
                     </div>
@@ -162,20 +209,12 @@
             <div class="container mt-5 mb-5 d-flex justify-content-center">
                 <div class="card px-1 py-4" id="CardData">
                     <div class="card-body">
-                        <div class="col mb-3">
+                        <div class="col mb-2">
                             <h3>
                             Category List
                             </h3>
                         </div>
-                
-                       @*<div class="form-group has-search">
-                            
-                                <span class="fa fa-search form-control-feedback"></span>
-                                
-                            <input type="text" class="form-control" style="width: 200px;" placeholder="Search">
-                        </div>*@
-                     
-                        
+             
                         <div class="table-responsive">
                             <table class="table text-nowrap"
    align="center" id="tblData">
@@ -190,39 +229,11 @@
                                 </tr>
                             </thead>
                             <tbody id="tblData">
-
-                              @*  @foreach (var item in ViewBag.data)
-                                {
-                                    <tr>
-                                        <td width="30%">
-                                            @item.Name
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td width="30%">
-                                            <div role="group" class="w-60 btn-group">
-                                                <i class="fa fa-pencil-square" aria-hidden="true" style="color:green;font-size:30px"></i>&nbsp;
-                                                <i class="fa fa-trash" aria-hidden="true" style="color:green;font-size:30px"></i>
-                                                
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                }*@
                             </tbody>
                         </table>
                         </div>
                        <br/>
-                         <ul class="pagination justify-content-end" id="Paging">
-    <li class="page-item"><a class="page-link" href="javascript:void(0);"><<</a></li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">>></a></li>
-  </ul>
+                        
                     </div>
                 </div>
         
@@ -231,45 +242,70 @@
 </div>
 </div>
 
+
+
 @section scriptsjs
  {
-     <script type="text/javascript">
 
+
+     <script type="text/javascript">
+        
         $(document).ready(function () {
 
-            BindpatientData();
+            BindCategoryData();
+            $('#btnUpdate').hide();
+
+        
+      
         });
-             function  BindpatientData () 
+        
+         function BindCategoryData() 
              {
             debugger;
             $.ajax({
-                type: "POST",
+                type: "Post",
                 url: "/Admin/Category/AjaxMethod",
                 data: '{}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    $("#tblData").DataTable(
+                  $("#tblData").DataTable(
                         {
                             bLengthChange: false,
-                            //lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                            
                             bFilter: true,
                             bSort: true,
-                            bPaginate: false,
+                            bPaginate: true,
+                            bInfo: false,
                             data: response,
-                            
+                            bDestroy: true,
+
+                           // pagingType: "full_numbers",
                             columns: [
                               
                                 { 'data': 'Name' },
-                               
-                                { 'data': 'IsActive' },
-                                //{ 'data': 'CreatedOn' },
+
+                                { 'data': 'IsActive',
+                                    render: function (data, type, row) {
+
+                                        if (data == true) {
+
+                                            return '<button class="btn" style="background-color:green;height:20px;padding-top:0.4px;color:white;font-size:13px;">Active</button>';
+
+                                        } else if (data ==false) {
+
+                                            return '<button class="btn" style="background-color:red;height:20px;padding-top:0.4px;color:white;font-size:13px;">InActive</button>';
+
+                                        }
+                                    }
+                                },
+                      
                                 {
                                     data: null,
                                     render: function (data, type, row) {
 
-
-                                        return '<img src="data:image/gif;base64,{0},' + data + '" " style="height:100px;width:100px;"/>';
+                                      
+                                        return '<img src="data:image/png;base64,' + data.dataFiles + '" " style="height:50px;width:50px;"/>';
 
                                     }
                                 },
@@ -277,7 +313,7 @@
                                     data: null,
                                     render: function (data, type, row) {
                                         //return "<input type='button' id='btnDelete' value='Delete' class='btn btn-danger' data-id='" + data.id + "'>";
-                                        return '<a href="#" onclick="Edit(' + data.Id + ')"><i class="fa fa-pencil-square" aria-hidden="true" style="color:green;font-size:25px"></i></a>&nbsp<a href="#" onclick="Delete(' + data.Id + ')"> <i class="fa fa-trash" aria-hidden="true" style="color:green;font-size:25px"></i></a>'
+                                        return '<a href="#" onclick="Edit(' + data.Id + ')"><i class="fa fa-pencil-square" aria-hidden="true" style="color:green;font-size:20px"></i></a>&nbsp<a href="#" onclick="Delete(' + data.Id + ')"> <i class="fa fa-trash" aria-hidden="true" style="color:green;font-size:20px"></i></a>'
                                         
                                     }
                                 }
@@ -296,8 +332,99 @@
         }
         function Edit(id)
         {
-            alert(id);
+            debugger
+            $.ajax({
+                url: '/Admin/Category/GetDataForEdit/' + id,
+                type:'Get',
+                datatype:'json',
+                success:function(result)
+                {
+                  
+                  var data=result.IsActive;
+                    $('#txtcheckbox').prop("checked", data == true);
+                    $("#txtid").val(result.Id);
+
+                    $("#txtName").val(result.Name);
+                    $("#txtimg").html(result.dataFiles);
+
+                   
+                    $('#txtimg').html('<img src="data:image/png;base64,' + result.dataFiles + '" " style="height:55px;width:55px;"/>')
+                   $('#btnUpdate').show();
+                   $('#btnAdd').hide();
+                },
+                error:function(errmsg)
+                {
+                    alert(errormessage.responseText);
+                }
+            });
+            
         }
-       
+
+        function update()
+        {
+            debugger
+            var isActiveValue = $("#txtcheckbox").prop('checked');
+           
+                    var Obj ={   
+               "Id" : $("#txtid").val(),
+               "Name" : $("#txtName").val(),
+                "IsActive": isActiveValue
+               // "ImageFile": $("#catimage").val()
+                    };
+
+         console.log(Obj);
+            $.ajax({
+                        url: "/Admin/Category/UpadteEmployee/",
+                        type: "POST",
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(Obj),
+                        success: function (result) {
+                    BindCategoryData();
+                        },
+                        error: function (errormessage) {
+                            alert(errormessage.responseText);
+                        }
+                    });
+        }
+        function Delete(id)
+        {
+            debugger
+            Swal.fire({
+                title: 'Are sure wants to delete??',
+                icon: 'error',
+                buttons: true,
+                showCancelButton: true,
+                dangerMode: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Make Ajax call to ActionResult.
+                    $.ajax({
+                        url: "/Admin/Category/DeleteCategory/" + id,
+                        type: "POST",
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (result) {
+                           BindCategoryData();
+                           //reloadTable = $('#tblData').dataTable();
+                           // reloadTable.fnDraw();
+                        },
+                        error: function (errormessage) {
+                            alert(errormessage.responseText);
+                        }
+                    });
+                }
+                else {
+                    Swal.fire({
+                        text: 'Data batal dihapus...',
+                        icon: 'info'
+                    });
+                }
+                return false;
+            });
+        }
+
+       //fetch Cehckbox value
+       //edit
      </script>
  }

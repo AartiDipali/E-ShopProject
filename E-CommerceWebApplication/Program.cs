@@ -28,6 +28,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSingleton(emailConfig);
 //builder.Services.AddScoped<IEmailSender, EmailSender>();
 // Add services to the container.
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddControllersWithViews()
             .AddJsonOptions(options =>
@@ -81,7 +82,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
 //Register application dependancies.
 builder.Services.AddTransient<IAccount, Account>();
 builder.Services.AddTransient<IEmail, ServiceRepo>();
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //Toster Notification
 builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
@@ -106,7 +107,6 @@ builder.Services.AddSession(options => {
 
 //Logging(what is logging,and Why we use serial log)
 var logger = new LoggerConfiguration()
-
   .ReadFrom.Configuration(builder.Configuration)
   .WriteTo.Debug(outputTemplate: DateTime.Now.ToString())
      .CreateLogger();

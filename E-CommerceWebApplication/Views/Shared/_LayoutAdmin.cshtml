@@ -6,21 +6,26 @@
     <title>E-Shop</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="~/Saviourmachine-Chat-Shopping.ico">
+  
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Styleadmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" />
     
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        <div class="bg-white" id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="bg-white">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <i class="fa fa-user-secret me-2"></i>EShop
             </div>
+            
             <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active">
+                <a href="#" class="list-group-item list-group-item-action second-text active">
                     <i class="fa fa-tachometer me-2"></i>Dashboard
                 </a>
                 <ul class="navbar-nav" id="menu">
@@ -31,6 +36,13 @@
                         </a>
                     
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="list-group-item list-group-item-action fw-bold">
+                            <i class="fa fa-list-alt me-2"></i>Product List
+                        </a>
+
+                    </li>
+                    <hr/>
                     <li>
                         <a href="#" class="list-group-item list-group-item-action fw-bold">
                             <i class="fa fa-tags me-2"></i>Theme
@@ -38,43 +50,55 @@
                                
                     </li>
                     <li>
-                        <a class="list-group-item list-group-item-action fw-bold" href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <a href="#" class="list-group-item list-group-item-action fw-bold">
+                            <i class="fa fa-first-order me-2"></i>Orders
+                        </a>
+
+                    </li>
+
+
+                    <li>
+                        <a class="list-group-item list-group-item-action fw-bold" href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fa fa-tags me-2"></i>Manage
                         </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100 nav-item ">
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Brand</span></a>
+                                <a asp-area="Admin" asp-controller="Manage" asp-action="AddBrand" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Brand</span></a>
                             </li>
                            
                             <li class="nav-item">
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Size</span></a>
+                                <a asp-area="Admin" asp-controller="Manage" asp-action="AddSizes" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Size</span></a>
 
                             </li>
+                            
                             <li class="nav-item">
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Subcategory</span></a>
+                                <a asp-area="Admin" asp-controller="Manage" asp-action="AddGender" class="list-group-item list-group-item-action bg-transparent second-text active"> <span class="d-none d-sm-inline">Add Gender</span></a>
 
                             </li>
                         </ul>
                     </li>
                 </ul>
                
-                <a href="#" class="list-group-item list-group-item-action fw-bold">
-                    <i class="fa fa-list-alt me-2"></i>Product List
-                </a>
-                <a href="#" class="list-group-item list-group-item-action fw-bold">
-                    <i class="fa fa-first-order me-2"></i>Orders
-                </a>
-                <a asp-area="Admin" asp-action="GetRoles" asp-controller="RoleManagement" class="list-group-item list-group-item-action fw-bold">
-                    <i class="fa fa-user-circle-o me-2"></i>Role Management
-                </a>
+               <hr />
+                
+               
                 <a asp-action="GetAllCategories" asp-controller="Category" asp-area="Admin" class="list-group-item list-group-item-action fw-bold">
                     <i class="fa fa-tags me-2"></i>Category
+                </a>
+                <a asp-action="AddSubcategory" asp-controller="Manage" asp-area="Admin" class="list-group-item list-group-item-action fw-bold">
+                    <i class="fa fa-tags me-2"></i>Sub-Category
+                </a>
+                
+                <hr/>
+                 <a asp-area="Admin" asp-action="GetRoles" asp-controller="RoleManagement" class="list-group-item list-group-item-action fw-bold">
+                    <i class="fa fa-user-circle-o me-2"></i>Role Management
                 </a>
                 <a href="#" class="list-group-item list-group-item-action  text-danger fw-bold">
                     <i class="fa fa-power-off me-2"></i>Logout
                 </a>
             </div>
-        </div>
+            </div>
+       
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         @*<div id="page-content-wrapper">*@
@@ -128,10 +152,10 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
-   
-    
+
+@* Add line chart js and css*@
     @RenderSection("scriptsjs", required: false)
-   
+    @await Component.InvokeAsync("Notyf")
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");

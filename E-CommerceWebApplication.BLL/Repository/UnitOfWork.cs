@@ -15,7 +15,8 @@ namespace E_CommerceWebApplication.BLL.Repository
     {
         private readonly ApplicationDbcontext _context;
        private readonly ILogger _logger;
-        private ICategory _CategoryRepository;
+        private ICategory _categoryRepository;
+        private ISubCategory _subcategoryRepository;
 
         public UnitOfWork(ApplicationDbcontext context, ILoggerFactory loggerFactory)
         {
@@ -27,13 +28,31 @@ namespace E_CommerceWebApplication.BLL.Repository
 
         public ICategory category
         {
-            get { return _CategoryRepository = _CategoryRepository ?? new CategoryRepository(_context,_logger); }
+            get { 
+                
+                return _categoryRepository = _categoryRepository ?? new CategoryRepository(_context,_logger); 
+            
+            }
+        }
+      
+        public ISubCategory subcategory
+        {
+            get
+            {
+                return _subcategoryRepository = _subcategoryRepository ?? new SubCategoryRepo(_context, _logger);
+            }
         }
 
-        public async Task CompleteAsync()
+        //public async Task CompleteAsync()
+        //{
+        //    await _context.SaveChangesAsync();
+        //}
+
+        public void Save()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
+
 
         public void Dispose()
         {

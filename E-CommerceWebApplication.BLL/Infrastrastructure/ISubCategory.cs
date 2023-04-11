@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_CommerceWebApplication.BOL.Models.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace E_CommerceWebApplication.BLL.Infrastrastructure
 {
-    public interface IUnitOfWork
+    public interface ISubCategory:IGenericRepository<Subcategory>
     {
-        ICategory category { get; }
-        ISubCategory subcategory { get; }
-        void Save();
 
-        
     }
 }

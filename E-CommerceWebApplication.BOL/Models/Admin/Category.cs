@@ -29,5 +29,10 @@ namespace E_CommerceWebApplication.BOL.Models.Admin
 
         public DateTime? CreatedOn { get; set; }
 
+        public virtual ICollection<Subcategory> Subcategories { get; set; }
+
+        public virtual ICollection<Sizes> sizes { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+
     }
 }

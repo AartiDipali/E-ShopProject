@@ -18,7 +18,7 @@ namespace E_CommerceWebApplication.Areas.Admin.Controllers
         }
 
 
-        public JsonResult GetRoles()
+        public IActionResult GetRoles()
         {
             var roles = roleManager.Roles.ToList();
             var vm = new List<RoleViewModel>();
@@ -30,7 +30,7 @@ namespace E_CommerceWebApplication.Areas.Admin.Controllers
 
 
             ));
-            return Json(vm);
+            return View(vm);
         }
         [HttpGet]
         public IActionResult Create()

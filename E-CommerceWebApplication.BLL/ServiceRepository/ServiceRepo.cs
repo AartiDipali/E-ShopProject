@@ -24,9 +24,6 @@ namespace E_CommerceWebApplication.BLL.ServiceRepository
             mailMessage.Body = confirmationLink;
 
             SmtpClient client = new SmtpClient();
-           
-            
-           
             client.Host = "smtp.gmail.com";
             client.Port = 587;
             client.EnableSsl = true;
