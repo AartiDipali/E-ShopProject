@@ -13,7 +13,6 @@ namespace E_CommerceWebApplication.BOL.Models.Admin
         [Key]
         public int brandId { get; set; }
         public string brandName { get; set; }
-
         public virtual ICollection<Sizes> sizes { get; set; }
         public virtual ICollection<Product> products { get; set; }
     }

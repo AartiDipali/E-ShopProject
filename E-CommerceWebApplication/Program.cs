@@ -83,13 +83,14 @@ builder.Services.Configure<IdentityOptions>(opt =>
 builder.Services.AddTransient<IAccount, Account>();
 builder.Services.AddTransient<IEmail, ServiceRepo>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IManageData, ManageDataRepo>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //Toster Notification
-builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
-{
-    ProgressBar = true,
-    Timeout = 7000
-});
+//builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+//{
+//    ProgressBar = true,
+//    Timeout = 7000
+//});
 
 // Add ToastNotification
 builder.Services.AddNotyf(config =>

@@ -1,10 +1,15 @@
-﻿@{
-    ViewBag.Title = "Subctegory";
+﻿@model Sizes;
+@using AspNetCoreHero.ToastNotification.Abstractions;
+@inject INotyfService _notyfService;
+
+@{
+    ViewBag.Title = "Sizes";
 
 }
-
-
-
+@if (TempData["Success"] != null)
+{
+    _notyfService.Success("Your data save sucessfully");
+}
 <head>
     <style>
         body {
@@ -23,9 +28,6 @@
             height: 48px;
             border-radius: 10px
         }
-
-
-
         .agree-text {
             font-size: 12px
         }
@@ -49,7 +51,10 @@
     </style>
 
 </head>
+<div class="row">
+<div class="col-lg-5 col-xlg-3 col-md-12">
 <div class="container mt-5 mb-5 d-flex justify-content-center">
+   <form method="post" asp-action="AddSizes" asp-controller="Manage">
     <div class="card px-1 py-4">
         <div class="card-body">
             <h4 class="card-title mb-3">Add Size</h4>
@@ -59,7 +64,7 @@
                         <label class="control-label " for="name">
                         Size Name
                         </label>
-                        <div class="input-group"><input class="form-control" type="text"> </div>
+                        <div class="input-group"><input class="form-control" type="text" asp-for="sizeName"> </div>
                     </div>
                 </div>
             </div>
@@ -68,11 +73,19 @@
                     <label class="control-label " for="name">
                         Main Category
                     </label>
-                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example">
-                        <option selected>....Select....</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    
+                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example" id="ddlCategory"
+                            asp-for="categoryId" onchange="loadProduct(this)" asp-items="(IEnumerable<SelectListItem>)@ViewData["CateogoryList"]"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label " for="name">
+                        SubCategory
+                    </label>
+                    <select id="ddlSubCat" asp-for="subcategoryId"   class="form-select form-select-sm mb-3 form-control"
+                            aria-label=".form-select-sm example" asp-items="(IEnumerable<SelectListItem>)@ViewData["subCatData"]">
+                       
                     </select>
                 </div>
             </div>
@@ -81,42 +94,118 @@
                     <label class="control-label " for="name">
                         Brand
                     </label>
-                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example">
-                        <option selected>....Select....</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example"
+                     asp-for="brandId" asp-items="(IEnumerable<SelectListItem>)@ViewData["BrandList"]"></select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label class="control-label " for="name">
-                        Size
-                    </label>
-                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example">
-                        <option selected>....Select....</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
+            
             <div class="row">
                 <div class="col-sm-12">
                     <label class="control-label " for="name">
                     Gender
                     </label>
-                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example">
-                        <option selected>....Select....</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        
-                    </select>
+                    <select class="form-select form-select-sm mb-3 form-control" aria-label=".form-select-sm example"
+                            asp-for="genderId" asp-items="(IEnumerable<SelectListItem>)@ViewData["GenderList"]"></select>
                 </div>
             </div>
 
             <button class="btn btn-success btn-block confirm-button">Submit</button>
         </div>
     </div>
+    </form>
 </div>
+</div>
+    <div class="col-lg-7 col-xlg-9 col-md-12">
+
+        <div class="container mt-5 mb-5 d-flex justify-content-center">
+            <div class="card px-1 py-4" id="CardData">
+                <div class="card-body">
+                    <div class="col mb-2">
+                        <h3>
+                            Size List
+                        </h3>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table text-nowrap"
+                               align="center" id="tblsizeData">
+                            <thead>
+                                <tr>
+                                    <th>Category Name</th>
+
+                                    <th>Active</th>
+                                    @*<th>CreatedOn</th>*@
+                                    <th>Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblsizeData">
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+@section scriptsjs
+ {
+        <script type="text/javascript" >
+            $(document).ready(function () {
+            var a = 0;
+            BindSizeData();
+              
+            });
+        function loadProduct(obj) {
+            var value = obj.value;
+            var url = "/Admin/Manage/FindSubCat/";
+            $.post(url, { categoryId: value }, function (data) {
+                debugger;
+                PopulateDropDown("#ddlSubCat", data);
+            });
+        }
+        function PopulateDropDown(dropDownId, list) {
+            $(dropDownId).empty();
+            $(dropDownId).append("<option>Select SubCategory</option>")
+            $.each(list, function (index, row) {
+                $(dropDownId).append("<option value='" + row.subcategoryId + "'>" + row.subcategoryName + "</option>")
+            });
+        }
+        function BindSizeData() {
+            debugger;
+            $.ajax({
+                type: "Post",
+                url: "/Admin/Manage/GettblSizeDataAjax",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#tblsizeData").DataTable(
+                        {
+                            bLengthChange: false,
+
+                            bFilter: true,
+                            bSort: true,
+                            bPaginate: true,
+                            bInfo: false,
+                            data: response,
+                            bDestroy: true 
+                });
+                console.log(response);
+                },
+
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+    </script>
+    
+}

@@ -13,7 +13,6 @@ namespace E_CommerceWebApplication.BOL.Models.Admin
         [Key]
         public int sizeId { get; set; }
         public string sizeName { get; set; }
-
         public int? brandId { get; set; }
         [ForeignKey("brandId")]
         public virtual Brand brand { get; set; }
@@ -21,16 +20,12 @@ namespace E_CommerceWebApplication.BOL.Models.Admin
 
         [ForeignKey("subcategoryId")]
         public virtual Subcategory subcategory { get; set; }
-
-
         public int? genderId { get; set; }
         [ForeignKey("genderId")]
         public Gender gender { get; set; }
-
         public int? categoryId { get; set; }
         [ForeignKey("categoryId")]
         public virtual Category category { get; set; }
-
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<ProductSizeQuantity> ProductSizeQuantities { get; set; }
 

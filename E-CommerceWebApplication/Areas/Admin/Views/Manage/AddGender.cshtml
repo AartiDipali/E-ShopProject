@@ -1,9 +1,15 @@
-﻿@{
-    ViewBag.Title = "Subctegory";
+﻿@model Gender;
+@using AspNetCoreHero.ToastNotification.Abstractions;
+@inject INotyfService _notyfService;
+@{
+    ViewBag.Title = "Gender";
 
 }
 
-
+@if (TempData["Success"] != null)
+{
+    _notyfService.Success("Your data save sucessfully");
+}
 
 <head>
     <style>
@@ -49,22 +55,24 @@
     </style>
 
 </head>
+<form method="post" asp-action="AddGender" asp-controller="Manage">
 <div class="container mt-5 mb-5 d-flex justify-content-center">
     <div class="card px-1 py-4">
         <div class="card-body">
             <h4 class="card-title mb-3">Add Gender</h4>
+             
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="control-label " for="name">
                             Gender
                         </label>
-                        <div class="input-group"><input class="form-control" type="text"> </div>
+                        <div class="input-group"><input class="form-control" type="text" asp-for="genderName"> </div>
                     </div>
                 </div>
             </div>
-
             <button class="btn btn-success btn-block confirm-button">Submit</button>
         </div>
     </div>
 </div>
+</form>
